@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".main.MainFragment">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_sipper_first"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        app:layout_constraintBottom_toTopOf="@id/ivImageFirst"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivImageFirst"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/card_sipper_second"
+        app:layout_constraintEnd_toEndOf="@id/card_sipper_first"
+        app:layout_constraintStart_toStartOf="@id/card_sipper_first"
+        app:layout_constraintTop_toBottomOf="@id/card_sipper_first"
+        tools:src="@color/black" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_sipper_second"
+        android:layout_width="0dp"
+        app:cardElevation="2dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/ivImageSecond"
+        app:layout_constraintLeft_toLeftOf="@id/ivImageFirst"
+        app:layout_constraintRight_toRightOf="@id/ivImageFirst"
+        app:layout_constraintTop_toBottomOf="@id/ivImageFirst">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivImageSecond"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_generate"
+        app:layout_constraintEnd_toEndOf="@id/card_sipper_second"
+        app:layout_constraintStart_toStartOf="@id/card_sipper_second"
+        app:layout_constraintTop_toBottomOf="@id/card_sipper_second"
+        tools:src="@color/black" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_generate"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:text="@string/generate"
+        android:layout_marginVertical="@dimen/_2sdp"
+        app:layout_constraintTop_toBottomOf="@+id/ivImageSecond"
+        style="@style/AppTheme.YellowButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/ivImageSecond" />
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seekbar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:progress="1"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/btn_generate"
+        app:layout_constraintEnd_toEndOf="@id/ivImageSecond"
+        app:layout_constraintStart_toEndOf="@id/btn_generate"
+        app:layout_constraintTop_toTopOf="@id/btn_generate" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

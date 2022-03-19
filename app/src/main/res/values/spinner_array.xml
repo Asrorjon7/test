@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="algorithm">
+        <item>Kotlin</item>
+        <item>Java</item>
+        <item>PHP</item>
+        <item>Golang</item>
+        <item>Vue.js</item>
+        <item>.Net</item>
+    </string-array>
+</resources>
