@@ -47,6 +47,17 @@ class MainViewModel @Inject constructor (var application: MainApplication): Andr
         return timer.start()
     }
 
+     private var _imageBackground1 =SingleLiveEvent<Boolean>()
+     val imageBackground1:SingleLiveEvent<Boolean> =_imageBackground1
+     private var _imageBackground2 =SingleLiveEvent<Boolean>()
+     val imageBackground2:SingleLiveEvent<Boolean> = _imageBackground2
+
+     fun setBackgroundData1 (data:Boolean){
+         _imageBackground1.postValue(data)
+     }
+    fun setBackgroundData2(data: Boolean){
+        _imageBackground2.postValue(data)
+    }
 
 
 }

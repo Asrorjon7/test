@@ -43,7 +43,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(),
     override fun getViewModelClass(): Class<MainViewModel> = MainViewModel::class.java
 
     override fun init() {
-        Log.e( "init: ","oncreateView" )
         getListQR()
         generateQrCode()
         setGreenBackGroundImageView()
@@ -52,7 +51,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(),
     private fun getListQR() {
         var list = viewModel.getListQR()
         binding.apply {
-           // background()
             ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
@@ -67,11 +65,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(),
             spinnerFirst.setSelection(position2)
         }
     }
-
     private fun generateQrCode() {
         binding.apply {
             btnGenerate.setOnClickListener {
-
                 count = 0
                 if (timer != null) {
                     timer!!.cancel()
@@ -86,7 +82,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(),
     private fun setGreenBackGroundImageView() {
         binding.apply {
             ivImageFirst.setOnClickListener {
-                background1=true
                 ivImageFirst.setBackground()
             }
             ivImageSecond.setOnClickListener {
@@ -99,27 +94,10 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(),
         try {
             when (id) {
                 R.id.spinner_first -> {
-                    binding.ivImageSecond.setImageBitmap(requireContext().getPositionData(position))
-
-                    if (binding.spinnerFirst.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                        Log.e( "setQRCodeImageView: ","portrait" )
-                        if (background1){
-                                binding.ivImageFirst.setBackground()
-                            }else{
-                                binding.ivImageFirst.setImageBitmap(requireContext().getPositionData(position1))
-                            }
-                    }
-                    else {
-                        Log.e( "setQRCodeImageView: ","landspace" )
-
-                    }
-                //    binding.ivImageFirst.setImageBitmap(requireContext().getPositionData(position))
-
+                    binding.ivImageFirst.setImageBitmap(requireContext().getPositionData(position1))
                 }
                 R.id.spinner_second -> {
-
                     binding.ivImageSecond.setImageBitmap(requireContext().getPositionData(position))
-                    // background2 = false
 
                 }
             }
@@ -143,8 +121,8 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(),
             override fun onTick(millisUntilFinished: Long) {
                 try {
                     binding.apply {
-                        ivImageFirst?.setImageBitmap(requireContext().getPositionData(count))
-                        ivImageSecond?.setImageBitmap(requireContext().getPositionData(count))
+                        ivImageFirst.setImageBitmap(requireContext().getPositionData(count))
+                        ivImageSecond.setImageBitmap(requireContext().getPositionData(count))
                         spinnerFirst.setSelection(count)
                         spinnerSecond.setSelection(count)
                         count++
@@ -163,48 +141,30 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(),
         }
     }
 
+
+
     override fun savedInstance(bundle: Bundle) {
         bundle.putInt(SpinnerFirstPosition, binding.spinnerFirst.selectedItemPosition)
         bundle.putInt(SpinnerSecondPosition, binding.spinnerSecond.selectedItemPosition)
         bundle.putBoolean(BackgroundFirst, background1)
         bundle.putBoolean(BackgroundSecond, background2)
-        Log.e("savedInstance","savesInstance")
     }
+
     override fun restoreInstanse(savedInstanceState: Bundle) {
-        Log.e("restoreInstanse: ", "restoreishladi")
         var imageView =view?.findViewById<ImageView>(R.id.ivImageFirst)
         imageView?.setBackground()
         position1 = savedInstanceState.getInt(SpinnerFirstPosition, 0)
         position2 = savedInstanceState.getInt(SpinnerSecondPosition, 0)
+
         background1 = savedInstanceState.getBoolean(BackgroundFirst, false)
         background2 = savedInstanceState.getBoolean(BackgroundSecond, false)
-
 
         binding.apply {
 
             spinnerFirst.setSelection(position1)
             spinnerSecond.setSelection(position2)
-            //background()
-           /* if (background1){
-                ivImageFirst.setBackground()
-            }else{
-                binding.ivImageFirst.setImageBitmap(requireContext().getPositionData(position1))
-            }*/
+
         }
     }
-    /*fun background() {
-        binding.apply {
-            if (background1) {
-                ivImageFirst.setBackground()
-            } else {
-                binding.ivImageFirst.setImageBitmap(requireContext().getPositionData(position1))
-            }
-            if (background2) {
-                ivImageSecond.setBackground()
-            } else {
-                binding.ivImageSecond.setImageBitmap(requireContext().getPositionData(position2))
-            }
-        }
 
-    }*/
 }
